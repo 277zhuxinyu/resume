@@ -1,5 +1,6 @@
+target/
+.project
 .idea
-resume-*.iml
 # Compiled class file
 *.class
 
