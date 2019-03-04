@@ -20,5 +20,10 @@ public class UserController {
         User user=userService.getUser();
         return user;
     }
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
 
 }
