@@ -1,26 +1,26 @@
 var navs = [{
 	"title" : "用户管理",
 	"icon" : "icon-text",
-	"href" : "page/links/linksList.html",
+	"th:href" : "@{/page/links/linksList.html}",
 	"spread" : false
 },{
 	"title" : "模板分类管理",
 	"icon" : "icon-text",
-	"href" : "page/links/resume_typeList.html",
+	"th:href" : "@{/page/links/resume_typeList.html}",
 	"spread" : false
 },{
 	"title" : "管理员管理",
 	"icon" : "icon-text",
-	"href" : "page/links/managerList.html",
+	"th:href" : "@{/page/links/managerList.html}",
 	"spread" : false
 },{
 	"title" : "模板管理",
 	"icon" : "icon-text",
-	"href" : "page/links/resumeList.html",
+	"th:href" : "@{/page/links/resumeList.html}",
 	"spread" : false
 },{
 	"title" : "收藏管理",
 	"icon" : "icon-text",
-	"href" : "page/links/collectionList.html",
+	"th:href" : "@{/page/links/collectionList.html}",
 	"spread" : false
 }]

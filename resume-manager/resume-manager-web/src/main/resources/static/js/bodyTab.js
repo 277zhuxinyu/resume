@@ -82,7 +82,7 @@ layui.define(["element","jquery"],function(exports){
 					title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="'+tabIdIndex+'">&#x1006;</i>';
 					element.tabAdd(tabFilter, {
 				        title : title,
-				        content :"<iframe src='"+_this.attr("data-url")+"' data-id='"+tabIdIndex+"'></frame>",
+				        content :"<iframe th:src='"+_this.attr("data-url")+"' data-id='"+tabIdIndex+"'></frame>",
 				        id : new Date().getTime()
 				    })
 
@@ -90,7 +90,7 @@ layui.define(["element","jquery"],function(exports){
 					var curmenu = {
 						"icon" : _this.find("i.iconfont").attr("data-icon")!=undefined ? _this.find("i.iconfont").attr("data-icon") : _this.find("i.layui-icon").attr("data-icon"),
 						"title" : _this.find("cite").text(),
-						"href" : _this.attr("data-url"),
+						"th:href" : _this.attr("data-url"),
 						"layId" : new Date().getTime()
 					}
 					menu.push(curmenu);
@@ -102,7 +102,7 @@ layui.define(["element","jquery"],function(exports){
 					var curmenu = {
 						"icon" : _this.find("i.iconfont").attr("data-icon")!=undefined ? _this.find("i.iconfont").attr("data-icon") : _this.find("i.layui-icon").attr("data-icon"),
 						"title" : _this.find("cite").text(),
-						"href" : _this.attr("data-url"),
+						"th:href" : _this.attr("data-url"),
 						"layId" : new Date().getTime()
 					}
 					window.sessionStorage.setItem("curmenu",JSON.stringify(curmenu));  //当前的窗口

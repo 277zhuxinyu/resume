@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qf.resumemanagerdao.dao.ClassificationMapper">
+    <!--查询所有的简历模板分类-->
+    <select id="getAllClassification" resultType="com.qf.resumemanagerpojo.Classification">
+        SELECT
+        a.id,
+        a.name
+        FROM classification AS a
+    </select>
+    <!--添加某一条简历模板分类-->
+    <insert id="insertClassification">
+        INSERT INTO classification(name)
+        VALUES(#{name})
+    </insert>
+    <!--根据id删除某条简历模板分类-->
+    <delete id="deleteClassificationById">
+        DELETE FROM classification
+        WHERE id=#{id}
+    </delete>
+    <delete id="deleteResumeClassificationByClassificationId">
+        DELETE FROM resume_classification
+        WHERE classification_id=#{id}
+    </delete>
+    <!--根据id修改某条简历模板分类信息-->
+    <update id="updateClassificationById">
+        UPDATE classification
+        SET name=#{name}
+        WHERE id=#{id}
+    </update>
+
+</mapper>
