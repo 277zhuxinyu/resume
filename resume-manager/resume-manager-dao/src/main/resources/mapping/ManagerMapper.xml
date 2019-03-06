@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.resumemanagerdao.dao.ManagerMapper">
+    <!--增加管理员-->
+    <insert id="insertManager">
+        INSERT INTO manager(name,pwd,sex,age,phone)
+        VALUES (#{name},#{pwd},#{sex},#{age},#{phone})
+    </insert>
+
+    <!--删除管理员-->
+    <delete id="deleteManager">
+        DELETE FROM manager
+        WHERE id=#{id}
+    </delete>
+
+    <!--修改管理员信息-->
+    <update id="updateManager">
+        UPDATE manager
+        SET name=#{name},sex=#{sex},age=#{age},phone=#{phone}
+        WHERE id=#{id}
+    </update>
+
+    <!--查询管理员-->
+    <select id="listManagersJson" resultType="com.qf.resumemanagerpojo.Manager">
+        SELECT id,cretime,uptime,name,pwd,sex,age,phone
+        FROM manager
+    </select>
+
+    <!--查询单个管理员-->
+    <select id="listManager" resultType="com.qf.resumemanagerpojo.Manager">
+        SELECT id,cretime,uptime,name,pwd,sex,age,phone
+        FROM manager
+        WHERE id=#{id}
+    </select>
+</mapper>
