@@ -4,6 +4,7 @@ import com.qf.resumemanagerpojo.Manager;
 import com.qf.resumemanagerservice.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -18,13 +19,18 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
+    @RequestMapping("/managers_list")
+    public String index(){
+        return "managers_list";
+    }
+
     /**
      * 增加管理员
      * @param manager
      * @return
      */
     @ResponseBody
-    @PostMapping("{manager}")
+    @PostMapping("{manager_add}")
     public String insertManager(Manager manager){
         //System.out.println(manager);
         Integer m = managerService.insertManager(manager);
@@ -75,12 +81,13 @@ public class ManagerController {
      * 查询所有管理员
      * @return
      */
-    @ResponseBody
-    @GetMapping("{managers}")
-    public List<Manager> listManagersJson(){
+
+    @GetMapping("managers_list")
+    public String listManagersJson(Model model){
         List<Manager> list = managerService.listManagersJson();
+        model.addAttribute("data",list);
         System.out.println(list.toString());
-        return list;
+        return "managers_list";
     }
 
     /**
