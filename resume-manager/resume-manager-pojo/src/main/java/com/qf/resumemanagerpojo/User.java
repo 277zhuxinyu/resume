@@ -1,39 +1,18 @@
 package com.qf.resumemanagerpojo;
 
+import lombok.Data;
 
+import java.util.Date;
+
+@Data
 public class User {
 
-    private Integer uid;
+    private Integer id;
+    private String name;
+    private String email;
+    private String address;
+    private Integer age;
+    private Date created;
+    private Date updated;
 
-    private String uname;
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-
-
-    public void setUname(String uname) {
-        this.uname = uname;
-    }
-
-    public Integer getUid() {
-
-        return uid;
-    }
-
-    public String getUname() {
-        return uname;
-    }
-
-    public User() {
-
-    }
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid=" + uid +
-                ", uname='" + uname + '\'' +
-                '}';
-    }
 }

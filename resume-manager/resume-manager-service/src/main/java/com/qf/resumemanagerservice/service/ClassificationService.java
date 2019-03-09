@@ -24,4 +24,9 @@ public interface ClassificationService {
         根据id修改某条简历模板分类
      */
     Integer updateClassificationById(Classification classification);
+
+    /*
+      根据id查询某条简历模板分类
+     */
+    Classification getClassificationById(Integer classification);
 }

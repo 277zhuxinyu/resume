@@ -33,5 +33,8 @@ public interface ClassificationMapper {
     void updateClassificationById(Classification classification);
 
 
-
+    /*
+      根据id查询某条简历模板分类
+     */
+    Classification getClassificationById(Integer id);
 }

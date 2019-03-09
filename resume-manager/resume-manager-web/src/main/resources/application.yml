@@ -26,7 +26,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.first.manager.pojo
+  type-aliases-package: com.qf.resumemanagerpojo
 
 
 pagehelper:

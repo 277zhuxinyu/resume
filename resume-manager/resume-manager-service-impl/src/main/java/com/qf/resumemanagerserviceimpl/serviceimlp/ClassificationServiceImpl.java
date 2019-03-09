@@ -50,4 +50,13 @@ public class ClassificationServiceImpl implements ClassificationService {
         classificationMapper.updateClassificationById(classification);
         return 1;
     }
+
+    /*
+      根据id查询某条简历模板分类
+     */
+    @Override
+    public Classification getClassificationById(Integer id) {
+        Classification classification=classificationMapper.getClassificationById(id);
+        return classification;
+    }
 }
