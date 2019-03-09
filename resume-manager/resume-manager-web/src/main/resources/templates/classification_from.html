@@ -1,0 +1,80 @@
+
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="includes/header::html" ></div>
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <title>模板分类详情</title>
+</head>
+<body>
+<div class="member_show">
+    <div class="member_jbxx clearfix"></div>
+    <div class="member_content">
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title" th:text="${classification.id==null?'新增分类':'编辑分类'}"></h3>
+                    </div>
+                    <!-- /.box-header -->
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">分类模板名：</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="classification_id" id="classification_id" th:value="${classification.id}"/>
+                                <input type="text" name="name" class="form-control" id="name" th:value="${classification.name}" placeholder="分类模板名"/>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" onclick="history.go(-1)" class="btn btn-default">返回</button>
+                            <button type="submit" class="btn btn-info pull-right" th:id="${classification.id==null?'classification_add':'classification_edit'}">提交</button>
+                        </div>
+                        <!-- /.box-footer -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.row (main row) -->
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript" type="text/javascript">
+    /*分类-添加*/
+    $('#classification_add').on('click', function () {
+        var name = $("#name").val();
+        $.ajax({
+            "url": "/classification/classification",
+            "type": "POST",
+            "data": {"name": name},
+            "success": function (data) {
+                alert("添加成功！");
+                window.location.load();
+            }
+        });
+    });
+    /*分类-修改*/
+    $('#classification_edit').on('click', function () {
+        var id = $("#classification_id").val();
+        var name = $("#name").val();
+        $.ajax({
+            "url": "/classification/classification",
+            "type": "PUT",
+            "data": {"name": name,"id":id},
+            "success": function (data) {
+                alert("修改成功！");
+                window.location.load();
+            }
+        });
+    });
+
+
+</script>
+</body>
+</html>
+
