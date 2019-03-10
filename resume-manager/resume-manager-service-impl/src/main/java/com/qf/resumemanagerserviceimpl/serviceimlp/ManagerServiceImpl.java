@@ -23,9 +23,9 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public Integer deleteManager(Manager manager) {
-        Integer m = managerMapper.deleteManager(manager);
-        return m;
+    public Integer deleteManager(Integer id) {
+        managerMapper.deleteManager(id);
+        return 1;
     }
 
     @Override
@@ -44,8 +44,8 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public Manager listManager(Manager manager) {
-        Manager m = managerMapper.listManager(manager);
+    public Manager listManager(Integer id) {
+        Manager m = managerMapper.listManager(id);
         return m;
     }
 

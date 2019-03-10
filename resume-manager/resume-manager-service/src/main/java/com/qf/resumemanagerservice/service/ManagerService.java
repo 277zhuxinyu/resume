@@ -13,7 +13,7 @@ public interface ManagerService {
     /**
      * 删除管理员
      */
-    Integer deleteManager(Manager manager);
+    Integer deleteManager(Integer id);
 
     /**
      * 修改管理员
@@ -29,6 +29,6 @@ public interface ManagerService {
      * 查询单个管理员信息
      * @return
      */
-    Manager listManager(Manager manager);
+    Manager listManager(Integer id);
 
 }

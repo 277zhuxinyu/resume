@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="includes/header::html" ></div>
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <title>管理员详情</title>
+</head>
+<body>
+<div class="member_show">
+    <div class="member_jbxx clearfix"></div>
+    <div class="member_content">
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title" th:text="${manager.id==null?'新增管理员':'编辑管理员'}"></h3>
+                    </div>
+                    <!-- /.box-header -->
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">填写管理员信息：</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="manager_id" id="manager_id" th:value="${manager.id}"/>
+                                <input type="text" name="name" class="form-control" id="name" th:value="${manager.name}" placeholder="管理员姓名"/>
+                                <input type="text" name="pwd" class="form-control" id="pwd" th:value="${manager.pwd}" placeholder="管理员密码"/>
+                                <input type="text" name="sex" class="form-control" id="sex" th:value="${manager.sex}" placeholder="管理员性别"/>
+                                <input type="text" name="age" class="form-control" id="age" th:value="${manager.age}" placeholder="管理员年龄"/>
+                                <input type="text" name="phone" class="form-control" id="phone" th:value="${manager.phone}" placeholder="管理员电话"/>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" onclick="history.go(-1)" class="btn btn-default">返回</button>
+                            <button type="submit" class="btn btn-info pull-right" th:id="${manager.id==0?'manager_add':'manager_edit'}">提交</button>
+                        </div>
+                        <!-- /.box-footer -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.row (main row) -->
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript" type="text/javascript">
+    /*分类-添加*/
+    $('#manager_add').on('click', function () {
+        var name = $("#name").val();
+        var pwd = $("#pwd").val();
+        var sex = $("#sex").val();
+        var age = $("#age").val();
+        var phone = $("#phone").val();
+        console.log("我走的是添加路线!");
+        $.ajax({
+            "url": "/manager/manager_add",
+            "type": "POST",
+            "data": {"name": name,"pwd":pwd,"sex":sex,"age":age,"phone":phone},
+            "success": function (data) {
+                alert("添加成功！");
+                window.location.load();
+            }
+        });
+    });
+    /*分类-修改*/
+    $('#manager_edit').on('click', function () {
+        var id = $("#manager_id").val();
+        var name = $("#name").val();
+        var pwd = $("#pwd").val();
+        var sex = $("#sex").val();
+        var age = $("#age").val();
+        var phone = $("#phone").val();
+        console.log("我走的是修改路线!");
+        $.ajax({
+            "url": "/manager/manager",
+            "type": "PUT",
+            "data": {"name": name,"pwd":pwd,"sex":sex,"age":age,"phone":phone,"id":id},
+            "success": function (data) {
+                alert("修改成功！");
+                window.location.load();
+            }
+        });
+    });
+
+
+</script>
+</body>
+</html>
+

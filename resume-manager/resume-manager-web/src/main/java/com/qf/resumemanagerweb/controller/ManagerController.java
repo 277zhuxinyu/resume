@@ -1,5 +1,6 @@
 package com.qf.resumemanagerweb.controller;
 
+import com.qf.resumemanagerpojo.BaseResult;
 import com.qf.resumemanagerpojo.Manager;
 import com.qf.resumemanagerservice.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,32 +34,46 @@ public class ManagerController {
     @PostMapping("{manager_add}")
     public String insertManager(Manager manager){
         //System.out.println(manager);
-        Integer m = managerService.insertManager(manager);
-        if (m == null) {
+        Integer result = managerService.insertManager(manager);
+        if (result == null) {
             String s="添加管理员"+manager.getName()+"失败!";
             return s;
         }else{
-            return "添加管理员"+manager.getName()+"成功!";
+            return "添加管理员成功!";
         }
     }
 
     /**
      * 删除管理员
-     * @param manager
-     * @return
      */
     @ResponseBody
-    @DeleteMapping("{manager}")
-    public String deleteManager(Manager manager) {
+    @DeleteMapping("{id}")
+    public void deleteManager(@PathVariable("id") String id, Model model) {
         //System.out.println(manager);
-        Integer m = managerService.deleteManager(manager);
-        if (m == null) {
-            return "删除管理员id为"+manager.getId()+"失败!";
-        }else {
-            return "删除管理员"+manager.getId()+"成功!";
+        Integer m = managerService.deleteManager(Integer.parseInt(id));
+        if (m != null) {
+            listManagersJson(model);
         }
     }
 
+    /**
+     * 跳转到 新增/编辑 页面
+     * @param model
+     * @param id
+     * @return
+     */
+    @GetMapping("from/{id}")
+    public String list1(Model model,@PathVariable("id")String id){
+        System.out.println("跳转到 新增/编辑 页面"+id);
+        Manager manager=new Manager();
+        Integer manager_id=Integer.parseInt(id);
+        if(id!=null&&manager_id!=-1){
+            System.out.println("跳转到manager_id"+manager_id);
+            manager=managerService.listManager(manager_id);
+        }
+        model.addAttribute("manager",manager);
+        return "manager_from";
+    }
     /**
      * 修改管理员
      * @param manager
@@ -81,24 +96,27 @@ public class ManagerController {
      * 查询所有管理员
      * @return
      */
-
-    @GetMapping("managers_list")
+    @GetMapping("")
     public String listManagersJson(Model model){
-        List<Manager> list = managerService.listManagersJson();
-        model.addAttribute("data",list);
-        System.out.println(list.toString());
-        return "managers_list";
+        BaseResult<Manager> baseResult = new BaseResult<>();
+        List<Manager> managers = managerService.listManagersJson();
+        baseResult.setData(managers);
+        baseResult.setMessage("查询成功");
+        baseResult.setStatus(200);
+        model.addAttribute("baseResult",baseResult);
+        model.addAttribute("count", 20);
+        return "manager_list";
     }
 
     /**
      * 查询单个管理员
      */
-    @ResponseBody
-    @GetMapping("manager/{id}")
-    public Manager listManager(Manager manager){
-        System.out.println("查询单个管理员信息接口接收到的参数是:"+manager);
-        Manager m = managerService.listManager(manager);
-        System.out.println("从后台查询得到的单个管理员信息是:"+m);
-        return m;
-    }
+//    @ResponseBody
+//    @GetMapping("manager/{id}")
+//    public Manager listManager(Manager manager){
+//        System.out.println("查询单个管理员信息接口接收到的参数是:"+manager);
+//        Manager m = managerService.listManager(manager);
+//        System.out.println("从后台查询得到的单个管理员信息是:"+m);
+//        return m;
+//    }
 }

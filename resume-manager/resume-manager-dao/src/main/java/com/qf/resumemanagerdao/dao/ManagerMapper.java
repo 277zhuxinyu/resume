@@ -15,7 +15,7 @@ public interface ManagerMapper {
     /**
      * 删除管理员
      */
-    Integer deleteManager(Manager manager);
+    Integer deleteManager(Integer id);
 
     /**
      * 修改管理员
@@ -30,5 +30,5 @@ public interface ManagerMapper {
     /**
      * 查询单个管理员
      */
-    Manager listManager(Manager manager);
+    Manager listManager(Integer id);
 }
